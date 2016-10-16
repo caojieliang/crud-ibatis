@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="crudProxy">
+	<!--
+        <selectKey resultClass="int" keyProperty="id">
+            <![CDATA[
+                       INSERT INTO CRUD_FILE
+                           (FILE_NO,FILE_NAME,FILE_SIZE,FILE_FORMAT,FILE_PATH,READ_USERS,EDIT_USERS,CDP,CDT,EDP,EDT,MEMO,MEMO2,FIELD_NAME)
+                    VALUES
+                           ( #fileNo#, #fileName#, #fileSize#, #fileFormat#, #filePath#, #readUsers#, #editUsers#, #cdp#, #cdt#, #edp#, #edt#, #memo#, #memo2#, #fieldName#)
+                    SELECT SCOPE_IDENTITY() AS id
+                ]]>
+        </selectKey>
+ -->
+
+	<insert id="doInsertAndReturnObject" parameterClass="ProxyInsertSQL">
+		<selectKey resultClass="java.lang.Object" keyProperty="returnObject">
+			$sql$
+		</selectKey>
+	</insert>
+
+	<insert id="doInsert" parameterClass="java.lang.String">
+		$sql$
+	</insert>
+
+	<insert id="doInsertWidthId" parameterClass="java.lang.String">
+		$sql$
+	</insert>
+
+	<!--
+	<select id="xxxxxxxxxxx" parameterClass="map" resultMap="baseResultMap"  remapResults="true">
+		SELECT  $field$
+		FROM dual
+		WHERE   xxxxx = xx
+	</select>
+	像这种，select后面是动态的，需要设置remapResults为ture
+	为啥呢？因为ibatis默认的会缓存rs中的meta信息，如果你第一次查询的列和第二次查询的列不一样的话，
+	那么第二次ibatis还会以第一次查询的列为key从rs里面获取数据，但是第二次列已经变化了，
+	所以第二次取数据的时候，RS里面已经没有了你第一次的那个列了，所以会出错。
+	-->
+
+	<!-- 查询 -->
+	<select id="doFind" parameterClass="java.lang.String" resultClass="java.util.HashMap" remapResults="true">
+		$sql$
+	</select>
+
+	<select id="doFindPage" parameterClass="java.lang.String" resultClass="java.util.HashMap" remapResults="true">
+		$sql$
+	</select>
+
+	<!-- 更新 -->
+	<update id="doUpdate" parameterClass="java.lang.String">
+		$sql$
+	</update>
+
+	<!-- 删除 -->
+	<delete id="doDelete" parameterClass="string">
+		$sql$
+	</delete>
+</sqlMap>
