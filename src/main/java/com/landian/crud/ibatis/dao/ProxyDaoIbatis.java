@@ -2,13 +2,15 @@ package com.landian.crud.ibatis.dao;
 
 import com.landian.crud.core.dao.ProxyDao;
 import com.landian.crud.ibatis.sql.ProxyInsertSQL;
-//SqlMapClientDaoSupport (Spring Framework 3.2.3.RELEASE API) 版本问题
-//import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+//SqlMapClientDaoSupport (Spring Framework 3.2.3.RELEASE API) 版本问题
+//import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 @Repository
 public class ProxyDaoIbatis
@@ -42,14 +44,14 @@ public class ProxyDaoIbatis
     }
 
     @Override
-    public List<HashMap<String, Object>> doFind(String sql) {
+    public List<Map<String, Object>> doFind(String sql) {
 //        List<HashMap<String, Object>> emptyMap = this.getSqlMapClientTemplate().queryForList("crudProxy.doFind", sql);
 //        return emptyMap;
         return null;
     }
 
     @Override
-    public List<HashMap<String, Object>> doFindPage(String sql, int start, int pageSize) {
+    public List<Map<String, Object>> doFindPage(String sql, int start, int pageSize) {
 //        List<HashMap<String, Object>> emptyMap = this.getSqlMapClientTemplate().queryForList("crudProxy.doFindPage", sql, start, pageSize);
 //        return emptyMap;
         return null;
